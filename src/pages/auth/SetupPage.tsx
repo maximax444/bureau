@@ -24,7 +24,7 @@ export function SetupPage() {
             console.log(err)
         })
         if (resp && resp.status == 200) {
-            navigate("/")
+            navigate("/register")
         }
 
     }
@@ -87,7 +87,6 @@ export function SetupPage() {
                         value={pass}
                         onChange={(e) => setPass(e.target.value)}
                         aria-describedby="passHelpBlock"
-                        required
                     />
                     <Form.Text id="passHelpBlock" muted>
                         Пароль пользователя базы данных
