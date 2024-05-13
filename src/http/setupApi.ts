@@ -15,3 +15,11 @@ export const register = async (name1: String, name2: String, email: String, pass
         })
     return response
 }
+
+export const login = async (email: String, password: String) => {
+    const response = await $host.post('login', { email, password })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}

@@ -98,7 +98,7 @@ export function RegisterPage() {
                         required
                     />
                     <Form.Text id="passHelpBlock" muted>
-                        Пароль пользователя
+                        Пароль пользователя. От 8 символов
                     </Form.Text>
                     <br />
                     <br />
