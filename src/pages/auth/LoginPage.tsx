@@ -13,20 +13,20 @@ export function LoginPage() {
     const [user, setUser] = useState("");
     const [pass, setPass] = useState("");
     const [isError, setError] = useState(false);
+    const [errorText, setErrorText] = useState("");
 
     const navigate = useNavigate();
 
     async function loginForm(e: Event) {
         e.preventDefault()
         const resp = await login(user, pass).catch((err) => {
-            console.log(err)
+            setError(true)
+            setErrorText(err.response.data.message)
         })
         if (resp && resp.status == 200) {
             setError(false)
             localStorage.setItem("token", resp.data)
             navigate("/")
-        } else {
-            setError(true)
         }
 
     }
@@ -61,7 +61,7 @@ export function LoginPage() {
                         От 8 символов
                     </Form.Text>
                     <Button className="setup__btn" type="submit">Отправить!</Button>
-                    {isError && <div className="error">Проверьте логин и пароль, данные неверны</div>}
+                    {isError && <div className="error">{errorText}</div>}
                 </MyForm>
             </Container>
             <Footer />
