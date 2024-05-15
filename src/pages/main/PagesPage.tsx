@@ -16,7 +16,7 @@ export function PagesPage() {
     const [isAddForm, setAddForm] = useState(false);
     const [parentToAdd, setParentToAdd] = useState(-1);
     const [errorText, setErrorText] = useState("");
-    
+
     const [title, setTitle] = useState("");
     const [slug, setSlug] = useState("");
 
@@ -26,7 +26,6 @@ export function PagesPage() {
             setErrorText(err.response.data.message)
         })
         if (resp && resp.status == 200) {
-            console.log(resp.data)
             setPages(resp.data)
             setError(false)
         }
@@ -42,6 +41,7 @@ export function PagesPage() {
         if (resp && resp.status == 200) {
             setError(false)
             setAddForm(false)
+            getAllPages()
         }
 
     }
@@ -94,7 +94,7 @@ export function PagesPage() {
                                 <Button className="setup__btn" type="submit">Отправить!</Button>
                                 {isError && <div className="error">{errorText}</div>}
                             </MyForm>
-                            
+
                         </div>
                     }
                 </div>
