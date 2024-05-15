@@ -1,0 +1,16 @@
+.main
+    &__wrap
+        display: grid
+        grid-template-columns: repeat(4, 1fr)
+        grid-gap: 40px
+    &__block
+        border: 1px solid #dedede
+        padding: 32px 20px
+        display: flex
+        flex-direction: column
+        align-items: center
+        grid-gap: 10px
+        transition: all 0.3s
+        &:hover
+            cursor: pointer
+            border: 1px solid #000
