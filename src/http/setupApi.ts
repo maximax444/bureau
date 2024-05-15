@@ -23,3 +23,19 @@ export const login = async (email: String, password: String) => {
         })
     return response
 }
+
+export const getPages = async () => {
+    const response = await $host.get('api/pages')
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const addPage = async (title: String, slug: String, parent_id: String) => {
+    const response = await $host.post('api/pages', { title, slug, parent_id })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}

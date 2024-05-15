@@ -1,7 +1,6 @@
 import './Header.sass';
-import { Navigation } from './Navigation';
 
-export function Header() {
+export function SmallHeader() {
     return (
         <header className="header">
             <div className="container">
@@ -9,7 +8,6 @@ export function Header() {
                     <a href="" className="header__logo">
                         БЮРО
                     </a>
-                    <Navigation />
                     
                 </div>
             </div>

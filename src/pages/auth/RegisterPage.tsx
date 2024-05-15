@@ -9,6 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { register } from "../../http/setupApi"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SmallHeader } from "../../components/SmallHeader";
+import { SmallFooter } from "../../components/SmallFooter";
 
 export function RegisterPage() {
     const [name, setName] = useState("");
@@ -38,7 +40,7 @@ export function RegisterPage() {
     }
     return (
         <div className="page">
-            <Header />
+            <SmallHeader />
             <Container className="setup">
                 <h1>Данные для входа администратора</h1>
                 <p className="setup__descr">
@@ -122,7 +124,7 @@ export function RegisterPage() {
                     <Button className="setup__btn" type="submit">Отправить!</Button>
                 </MyForm>
             </Container>
-            <Footer />
+            <SmallFooter />
         </div>
     )
 }

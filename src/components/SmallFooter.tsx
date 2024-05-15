@@ -1,18 +1,16 @@
 import './Header.sass';
-import { Navigation } from './Navigation';
 
-export function Header() {
+export function SmallFooter() {
     return (
-        <header className="header">
+        <footer className="header footer">
             <div className="container">
                 <div className="header__wrap">
                     <a href="" className="header__logo">
                         БЮРО
                     </a>
-                    <Navigation />
-                    
+
                 </div>
             </div>
-        </header>
+        </footer>
     )
 }

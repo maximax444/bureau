@@ -1,5 +1,3 @@
-import { Header } from "../../components/Header"
-import { Footer } from "../../components/Footer"
 import Container from "../../components/Container"
 import "./login.sass"
 import { useState } from "react";
@@ -8,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import { login } from "../../http/setupApi"
+import { SmallHeader } from "../../components/SmallHeader";
+import { SmallFooter } from "../../components/SmallFooter";
 
 export function LoginPage() {
     const [user, setUser] = useState("");
@@ -33,7 +33,7 @@ export function LoginPage() {
 
     return (
         <div className="page">
-            <Header />
+            <SmallHeader />
             <Container className="login">
                 <h1>Вход в Бюро</h1>
                 <p className="setup__descr">Вас ожидают...</p>
@@ -64,7 +64,7 @@ export function LoginPage() {
                     {isError && <div className="error">{errorText}</div>}
                 </MyForm>
             </Container>
-            <Footer />
+            <SmallFooter />
         </div>
     )
 }

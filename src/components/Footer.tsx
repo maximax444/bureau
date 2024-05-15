@@ -7,7 +7,7 @@ export function Footer() {
             <div className="container">
                 <div className="header__wrap">
                     <a href="" className="header__logo">
-                        BUREAU
+                        БЮРО
                     </a>
                     <Navigation />
 
