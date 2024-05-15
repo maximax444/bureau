@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Header.sass';
 import { Navigation } from './Navigation';
 
@@ -6,9 +7,9 @@ export function Header() {
         <header className="header">
             <div className="container">
                 <div className="header__wrap">
-                    <a href="" className="header__logo">
+                    <Link to="/" className="header__logo">
                         БЮРО
-                    </a>
+                    </Link>
                     <Navigation />
                     
                 </div>
