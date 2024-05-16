@@ -71,3 +71,11 @@ export const deleteCat = async (id: Number) => {
         })
     return response
 }
+
+export const addArt = async (title: String, descr: String, slug: String, category_id: number) => {
+    const response = await $host.post('api/articles', { title, descr, slug, category_id })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}

@@ -8,6 +8,7 @@ import { MainPage } from './pages/main/MainPage'
 import { PagesPage } from './pages/main/PagesPage'
 import { ArticlesPage } from './pages/main/ArticlesPage'
 import { CategoriesPage } from './pages/main/CategoriesPage'
+import { AddArticlePage } from './pages/main/AddArticlePage'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route path="/pages" element={<PagesPage />} />
       <Route path="/articles" element={<ArticlesPage />} />
       <Route path="/categories" element={<CategoriesPage />} />
+      <Route path="/articles/new" element={<AddArticlePage />} />
     </Routes>
   )
 }
