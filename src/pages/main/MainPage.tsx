@@ -10,26 +10,10 @@ import { login } from "../../http/setupApi"
 import "./main.sass"
 
 export function MainPage() {
-    const [user, setUser] = useState("");
-    const [pass, setPass] = useState("");
-    const [isError, setError] = useState(false);
-    const [errorText, setErrorText] = useState("");
 
     const navigate = useNavigate();
 
-    async function loginForm(e: Event) {
-        e.preventDefault()
-        const resp = await login(user, pass).catch((err) => {
-            setError(true)
-            setErrorText(err.response.data.message)
-        })
-        if (resp && resp.status == 200) {
-            setError(false)
-            localStorage.setItem("token", resp.data)
-            navigate("/")
-        }
 
-    }
 
     const myLink = (path: string) => {
         navigate(path);
@@ -44,7 +28,7 @@ export function MainPage() {
                 <div className="main__wrap">
                     <div className="main__block" onClick={() => myLink("/pages")}>
                         <div className="main__icon">
-                            <svg width="32px" height="32px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <svg width="32px" height="32px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" >
                                 <rect width="16" height="16" id="icon-bound" fill="none" />
                                 <path d="M3,3H1v13h11v-2H3V3z M12,0H4v13h11V3L12,0z M13,11H6V2h5v2h2V11z" />
                             </svg>
@@ -61,8 +45,8 @@ export function MainPage() {
                     </div>
                     <div className="main__block" onClick={() => myLink("/blocks")}>
                         <div className="main__icon">
-                            <svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="32px" height="32px" viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve">
+                            <svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
+                                width="32px" height="32px" viewBox="0 0 72 72" enable-background="new 0 0 72 72">
                                 <g>
                                     <g>
                                         <path d="M67.5,27.568c0,3.828-3.104,6.932-6.932,6.932H10.432c-3.828,0-6.932-3.104-6.932-6.932V10.432

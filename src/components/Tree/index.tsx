@@ -13,7 +13,6 @@ function Tree(props: Props) {
     const [itemsFull, setItemsFull] = useState([]);
     let itemsRoot: any = []
     useEffect(() => {
-        debugger
         let itemsMap: any = {};
         for (let i = 0; i < props.items.length; i++) {
             itemsMap[props.items[i].id] = props.items[i];
