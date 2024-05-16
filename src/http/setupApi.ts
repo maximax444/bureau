@@ -40,8 +40,32 @@ export const addPage = async (title: String, slug: String, parent_id: String) =>
     return response
 }
 
+export const getCats = async () => {
+    const response = await $host.get('api/categories')
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
 export const addCat = async (title: String, slug: String) => {
     const response = await $host.post('api/categories', { title, slug })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const updateCat = async (id: Number, title: String, slug: String) => {
+    const response = await $host.put('api/categories', { id, title, slug })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const deleteCat = async (id: Number) => {
+    const response = await $host.delete('api/categories/' + id)
         .catch((err) => {
             throw err
         })
