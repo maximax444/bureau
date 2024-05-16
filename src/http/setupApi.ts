@@ -39,3 +39,11 @@ export const addPage = async (title: String, slug: String, parent_id: String) =>
         })
     return response
 }
+
+export const addCat = async (title: String, slug: String) => {
+    const response = await $host.post('api/categories', { title, slug })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
