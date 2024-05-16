@@ -6,6 +6,7 @@ import { SetupPage } from './pages/auth/SetupPage'
 import { RegisterPage } from './pages/auth/RegisterPage'
 import { MainPage } from './pages/main/MainPage'
 import { PagesPage } from './pages/main/PagesPage'
+import { ArticlesPage } from './pages/main/ArticlesPage'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/" element={<MainPage />} />
       <Route path="/pages" element={<PagesPage />} />
+      <Route path="/articles" element={<ArticlesPage />} />
     </Routes>
   )
 }
