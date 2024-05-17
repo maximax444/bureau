@@ -5,8 +5,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import { addSet } from "../../http/setupApi"
-import { SmallHeader } from "../../components/SmallHeader";
-import { SmallFooter } from "../../components/SmallFooter";
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 
 export function AddSettingsPage() {
     const [isError, setError] = useState(false);
@@ -33,7 +33,7 @@ export function AddSettingsPage() {
 
     return (
         <div className="page">
-            <SmallHeader />
+            <Header />
             <Container className="login">
                 <h1>Добавление настройки</h1>
                 <p className="setup__descr">Хорошее это дело</p>
@@ -79,7 +79,7 @@ export function AddSettingsPage() {
                     {isError && <div className="error">{errorText}</div>}
                 </MyForm>
             </Container>
-            <SmallFooter />
+            <Footer />
         </div>
     )
 }

@@ -141,3 +141,19 @@ export const addSet = async (title: String, descr: String, slug: String, val: St
         })
     return response
 }
+
+export const getFields = async () => {
+    const response = await $host.get('api/fields')
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const addField = async (title: String, descr: String, slug: String) => {
+    const response = await $host.post('api/fields', { title, descr, slug })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}

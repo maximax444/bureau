@@ -14,6 +14,8 @@ import { UpdateArticlePage } from './pages/main/UpdateArticlePage'
 import { HelpPage } from './pages/main/HelpPage'
 import { SettingsPage } from './pages/main/SettingsPage'
 import { AddSettingsPage } from './pages/main/AddSettingsPage'
+import { FieldsPage } from './pages/main/FieldsPage'
+import { AddFieldsPage } from './pages/main/AddFieldsPage'
 
 function App() {
 
@@ -32,6 +34,8 @@ function App() {
       <Route path="/help" element={<HelpPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/settings/new" element={<AddSettingsPage />} />
+      <Route path="/fields" element={<FieldsPage />} />
+      <Route path="/fields/new" element={<AddFieldsPage />} />
     </Routes>
   )
 }
