@@ -134,3 +134,10 @@ export const updateSets = async (obj: numberMap) => {
         })
     return response
 }
+export const addSet = async (title: String, descr: String, slug: String, val: String) => {
+    const response = await $host.post('api/settings', { title, descr, slug, val })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}

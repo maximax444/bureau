@@ -13,6 +13,7 @@ import { SingleArticlePage } from './pages/main/SingleArticlePage'
 import { UpdateArticlePage } from './pages/main/UpdateArticlePage'
 import { HelpPage } from './pages/main/HelpPage'
 import { SettingsPage } from './pages/main/SettingsPage'
+import { AddSettingsPage } from './pages/main/AddSettingsPage'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
       <Route path="/articles/:articleId/edit" element={<UpdateArticlePage />} />
       <Route path="/help" element={<HelpPage />} />
       <Route path="/settings" element={<SettingsPage />} />
+      <Route path="/settings/new" element={<AddSettingsPage />} />
     </Routes>
   )
 }
