@@ -157,3 +157,27 @@ export const addField = async (title: String, descr: String, slug: String) => {
         })
     return response
 }
+
+export const deleteField = async (id: Number) => {
+    const response = await $host.delete('api/fields/' + id)
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const updateField = async (id: Number, title: String, descr: String, slug: String) => {
+    const response = await $host.put('api/fields/', { id, title, descr, slug })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const getSingleField = async (id: Number) => {
+    const response = await $host.get('api/fields/' + id)
+        .catch((err) => {
+            throw err
+        })
+    return response
+}

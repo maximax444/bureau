@@ -16,6 +16,7 @@ import { SettingsPage } from './pages/main/SettingsPage'
 import { AddSettingsPage } from './pages/main/AddSettingsPage'
 import { FieldsPage } from './pages/main/FieldsPage'
 import { AddFieldsPage } from './pages/main/AddFieldsPage'
+import { SingleFieldsPage } from './pages/main/SingleFieldsPage'
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
       <Route path="/settings/new" element={<AddSettingsPage />} />
       <Route path="/fields" element={<FieldsPage />} />
       <Route path="/fields/new" element={<AddFieldsPage />} />
+      <Route path="/fields/:fieldId" element={<SingleFieldsPage />} />
     </Routes>
   )
 }
