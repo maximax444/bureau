@@ -4,13 +4,11 @@ import { Editor } from "../../components/Editor"
 import Container from "../../components/Container"
 import { Form as MyForm } from "../../components/Form"
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { useEffect, useState, useRef } from "react";
 import { updateArt, getSingleArt, getCats } from "../../http/setupApi"
 import "./articles.sass"
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Article } from "../../model/Articles";
-import HTMLReactParser from "html-react-parser";
 import { Category } from "../../model/Category"
 
 export function UpdateArticlePage() {
