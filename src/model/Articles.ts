@@ -5,7 +5,7 @@ export interface Article {
     title: string
     descr: string
     slug: string
-    text?: Text
+    text?: string
     createdAt?: string
     updatedAt?: string
     articleImg?: string

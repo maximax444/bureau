@@ -103,3 +103,11 @@ export const addArt = async (formdata: FormData) => axios.post("http://localhost
         "Content-Type": "multipart/form-data"
     }
 })
+
+export const deleteArt = async (id: Number) => {
+    const response = await $host.delete('api/articles/' + id)
+        .catch((err) => {
+            throw err
+        })
+    return response
+}

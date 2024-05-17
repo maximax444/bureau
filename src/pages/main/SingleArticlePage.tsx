@@ -1,12 +1,13 @@
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
+//import { Editor } from "../../components/Editor"
 import Container from "../../components/Container"
-import { useEffect, useState, useRef } from "react";
-import { getSingleArt } from "../../http/setupApi"
+import { useEffect, useState } from "react";
+import { deleteArt, getSingleArt } from "../../http/setupApi"
 import "./articles.sass"
-import { Link, useParams } from 'react-router-dom';
-import JoditEditor from "jodit-react";
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Article } from "../../model/Articles";
+import HTMLReactParser from "html-react-parser";
 
 export function SingleArticlePage() {
     const { articleId } = useParams();
@@ -14,9 +15,9 @@ export function SingleArticlePage() {
 
     const [art, setArt] = useState<Article>();
 
-
-    const editor = useRef(null)
-    const [content, setContent] = useState("")
+    const navigate = useNavigate();
+    // const editor = useRef(null)
+    // const [content, setContent] = useState("")
 
     useEffect(() => {
         getArticle(articleId as any);
@@ -25,7 +26,7 @@ export function SingleArticlePage() {
     const getArticle = async (articletId: Number) => {
         const resp = await getSingleArt(articletId).catch((err) => {
             console.log(err);
-            
+
         })
         if (resp && resp.status == 200) {
             console.log(resp.data);
@@ -33,6 +34,17 @@ export function SingleArticlePage() {
             setArt(resp.data)
         }
     }
+
+    const handleDelete = async (e: Event) => {
+        e.preventDefault();
+        const resp = await deleteArt(Number(articleId)).catch((err) => {
+            console.log(err);
+            
+        })
+        if (resp && resp.status == 200) {
+            navigate("/articles")
+        }
+    } 
 
     return (
         <div className="page">
@@ -47,18 +59,19 @@ export function SingleArticlePage() {
                     <div className="articles__btns">
 
                         <Link to="/articles">Вернуться в статьи</Link>
-                        <a href="">Удалить статью</a>
-                        <a href="">Сохранить изменения</a>
+                        <a href="" onClick={(e) => {handleDelete(e)}}>Удалить статью</a>
+                        <Link to={"/articles/" + articleId + "/edit"}>Редактировать статью</Link>
                     </div>
                 </div>
                 <div className="article__img">
                     <img src={"http://localhost:3500/" + art?.articleImg} alt="" />
                 </div>
-                <JoditEditor ref={editor} value={content} onChange={newContent => {
+                {/* <Editor editor={editor} content={content} onChange={(newContent) => {
                     setContent(newContent)
                     console.log(content);
 
-                }} />
+                }} /> */}
+                {art?.text && HTMLReactParser(art?.text)}
 
             </Container>
             <Footer />
