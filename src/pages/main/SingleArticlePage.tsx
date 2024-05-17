@@ -59,7 +59,7 @@ export function SingleArticlePage() {
                     <div className="articles__btns">
 
                         <Link to="/articles">Вернуться в статьи</Link>
-                        <a href="" onClick={(e) => {handleDelete(e)}}>Удалить статью</a>
+                        <a href="" onClick={(e) => {handleDelete(e as any)}}>Удалить статью</a>
                         <Link to={"/articles/" + articleId + "/edit"}>Редактировать статью</Link>
                     </div>
                 </div>
