@@ -80,6 +80,13 @@ export const getArts = async () => {
         })
     return response
 }
+export const getSingleArt = async (id: Number) => {
+    const response = await $host.get('api/articles/' + id)
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
 
 // export const addArt = async (title: String, descr: String, slug: String, category_id: number, file: string) => {
 //     const response = await $host.post('api/articles', { title, descr, slug, category_id, file })

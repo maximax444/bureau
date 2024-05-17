@@ -9,6 +9,7 @@ import { PagesPage } from './pages/main/PagesPage'
 import { ArticlesPage } from './pages/main/ArticlesPage'
 import { CategoriesPage } from './pages/main/CategoriesPage'
 import { AddArticlePage } from './pages/main/AddArticlePage'
+import { SingleArticlePage } from './pages/main/SingleArticlePage'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
       <Route path="/articles" element={<ArticlesPage />} />
       <Route path="/categories" element={<CategoriesPage />} />
       <Route path="/articles/new" element={<AddArticlePage />} />
+      <Route path="/articles/:articleId" element={<SingleArticlePage />} />
     </Routes>
   )
 }

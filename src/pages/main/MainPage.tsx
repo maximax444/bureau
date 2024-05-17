@@ -1,12 +1,7 @@
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import Container from "../../components/Container"
-import { useState } from "react";
-import { Form as MyForm } from "../../components/Form"
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
-import { login } from "../../http/setupApi"
 import "./main.sass"
 
 export function MainPage() {

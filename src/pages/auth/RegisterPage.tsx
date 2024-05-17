@@ -1,5 +1,3 @@
-import { Header } from "../../components/Header"
-import { Footer } from "../../components/Footer"
 import Container from "../../components/Container"
 import { Form as MyForm } from "../../components/Form"
 import Form from 'react-bootstrap/Form';

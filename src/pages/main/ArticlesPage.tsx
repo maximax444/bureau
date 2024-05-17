@@ -2,22 +2,15 @@ import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import Container from "../../components/Container"
 import { useEffect, useState } from "react";
-import { Form as MyForm } from "../../components/Form"
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { useNavigate } from "react-router-dom";
 import { getArts } from "../../http/setupApi"
 import "./articles.sass"
 import { Link } from 'react-router-dom';
+import { Article } from "../../model/Articles";
 
 export function ArticlesPage() {
 
 
-    const [arts, setArts] = useState([]);
-    const [isError, setError] = useState(false);
-    const [errorText, setErrorText] = useState("");
-
-    const navigate = useNavigate();
+    const [arts, setArts] = useState<Article[]>();
 
 
     useEffect(() => {
@@ -26,14 +19,13 @@ export function ArticlesPage() {
 
     const getAllCats = async () => {
         const resp = await getArts().catch((err) => {
-            setError(true)
-            setErrorText(err.response.data.message)
+            console.log(err);
+            
         })
         if (resp && resp.status == 200) {
             console.log(resp.data);
 
             setArts(resp.data)
-            setError(false)
         }
     }
 
@@ -61,18 +53,7 @@ export function ArticlesPage() {
                             <div className="articles__thead-cat">Категория</div>
                             <div className="articles__thead-dates">Даты</div>
                         </div>
-                        <Link to="/articles" className="articles__block">
-                            <div className="articles__img">
-                                <img src="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666365017_1-mykaleidoscope-ru-p-krasivie-peizazhi-prirodi-oboi-3.jpg" alt="" />
-                            </div>
-                            <div className="articles__name">КРАСИВЫЕ ПЕЙЗАЖИ ПРИРОДЫ (59 ФОТО)</div>
-                            <div className="articles__category">Основное</div>
-                            <div className="articles__dates">
-                                Создано: <br />
-                                Изменено:
-                            </div>
-                        </Link>
-                        {arts.map(art =>
+                        {arts && arts.map(art =>
                             <Link to={"/articles/" + art.id} className="articles__block">
                                 <div className="articles__img">
                                     <img src={"http://localhost:3500/" + art?.articleImg} alt="" />
@@ -80,8 +61,8 @@ export function ArticlesPage() {
                                 <div className="articles__name">{art.title}</div>
                                 <div className="articles__category">{art?.Category?.title}</div>
                                 <div className="articles__dates">
-                                    Создано: {art.createdAt}<br />
-                                    Изменено: {art.updatedAt}
+                                    Создано: <br />{art?.createdAt}<br />
+                                    Изменено: <br />{art?.updatedAt}
                                 </div>
                             </Link>
                         )}

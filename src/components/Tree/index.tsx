@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import './index.sass';
+import { Page } from '../../model/Page';
 
 type Props = {
-    items: any;
+    items: Page[];
     onClickPlus: (parent_id: Number) => any;
     className?: string;
     isError?: boolean;
@@ -10,12 +11,12 @@ type Props = {
 };
 
 function Tree(props: Props) {
-    const [itemsFull, setItemsFull] = useState([]);
-    let itemsRoot: any = []
+    const [itemsFull, setItemsFull] = useState<Page[]>([]);
+    let itemsRoot: Page[] = []
     useEffect(() => {
         let itemsMap: any = {};
         for (let i = 0; i < props.items.length; i++) {
-            itemsMap[props.items[i].id] = props.items[i];
+            itemsMap[props.items[i].id as number] = props.items[i];
         }
         console.log(props.items);
         const up = (id: Number, child_id: Number) => {
@@ -35,12 +36,12 @@ function Tree(props: Props) {
             }
         }
         for (let j = 0; j < props.items.length; j++) {
-            if (props.items[j].parent_id == -1) {
+            if (Number(props.items[j].parent_id) == -1) {
                 itemsMap[props.items[j].id as any].used = true;
                 itemsRoot.push(props.items[j])
                 continue
             } else {
-                up(props.items[j].parent_id, props.items[j].id)
+                up(Number(props.items[j].parent_id), props.items[j].id as number)
             }
 
         }
@@ -56,18 +57,19 @@ function Tree(props: Props) {
                     <div className="pages__block">
                         <div className="pages__title">{item.title}</div>
                         <div className="pages__add" onClick={
-                            () => props.onClickPlus(item.id)
+                            () => props.onClickPlus(item?.id as number)
                         }>
                             +
                         </div>
-                        <div className="pages__slug">{item.slug}</div>
+                        {item.slug && <div className="pages__slug">{item.slug}</div>}
+                        
                     </div>
                     {item?.children?.map(item2 =>
                         <div>
                             <div className="pages__block in">
                             <div className="pages__title">{item2.title}</div>
                             <div className="pages__add" onClick={
-                                () => props.onClickPlus(item2.id)
+                                () => props.onClickPlus(item2.id as number)
                             }>
                                 +
                             </div>
@@ -77,7 +79,7 @@ function Tree(props: Props) {
                                 <div className="pages__block in2">
                                     <div className="pages__title">{item3.title}</div>
                                     <div className="pages__add" onClick={
-                                        () => props.onClickPlus(item3.id)
+                                        () => props.onClickPlus(item3.id as number)
                                     }>
                                         +
                                     </div>

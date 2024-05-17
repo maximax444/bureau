@@ -7,13 +7,12 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import { getCats, addArt } from "../../http/setupApi"
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import "./articles.sass"
 import { Link } from 'react-router-dom';
+import { Category } from "../../model/Category";
 
 export function AddArticlePage() {
-    const [cats, setCats] = useState([]);
+    const [cats, setCats] = useState<Category[]>();
     const [cat, setCat] = useState();
     const [isError, setError] = useState(false);
     const [errorText, setErrorText] = useState("");
@@ -22,6 +21,7 @@ export function AddArticlePage() {
     const [descr, setDescr] = useState("");
     const [slug, setSlug] = useState("");
     const [file, setFile] = useState("");
+    const [fileName, setFileName] = useState("");
 
     const navigate = useNavigate();
 
@@ -109,7 +109,7 @@ export function AddArticlePage() {
                             setCat(e.target.value as any)
                         }}>
                             <option value="-1">Без категории</option>
-                            {cats.map(cat =>
+                            {cats && cats.map(cat =>
                                 <option value={cat.id}>{cat.title}</option>
                             )}
                         </Form.Select>
@@ -118,8 +118,11 @@ export function AddArticlePage() {
                         <Form.Control
                             type="file"
                             id="inputImg"
-                            value={file.filename}
-                            onChange={(e) => setFile((e.target as HTMLInputElement)?.files[0])}
+                            value={fileName}
+                            onChange={(e) => {
+                                setFile((e.target as any)?.files[0])
+                                setFileName(e.target.value)
+                            }}
                             required
                         />
 
