@@ -1,4 +1,5 @@
 import { $host } from "./index"
+import axios from "axios"
 
 export const setup = async (server: String, db: String, user: String, password: String) => {
     const response = await $host.post('setup', { server, db, user, password })
@@ -72,10 +73,26 @@ export const deleteCat = async (id: Number) => {
     return response
 }
 
-export const addArt = async (title: String, descr: String, slug: String, category_id: number) => {
-    const response = await $host.post('api/articles', { title, descr, slug, category_id })
+export const getArts = async () => {
+    const response = await $host.get('api/articles')
         .catch((err) => {
             throw err
         })
     return response
 }
+
+// export const addArt = async (title: String, descr: String, slug: String, category_id: number, file: string) => {
+//     const response = await $host.post('api/articles', { title, descr, slug, category_id, file })
+//         .catch((err) => {
+//             throw err
+//         })
+//     return response
+// }
+
+
+export const addArt = async (formdata: FormData) => axios.post("http://localhost:3500/api/articles", formdata, {
+    headers: {
+        "Authorization": `Basic ${localStorage.getItem("token")}`,
+        "Content-Type": "multipart/form-data"
+    }
+})

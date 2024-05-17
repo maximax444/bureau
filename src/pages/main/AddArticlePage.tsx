@@ -21,6 +21,7 @@ export function AddArticlePage() {
     const [title, setTitle] = useState("");
     const [descr, setDescr] = useState("");
     const [slug, setSlug] = useState("");
+    const [file, setFile] = useState("");
 
     const navigate = useNavigate();
 
@@ -41,7 +42,12 @@ export function AddArticlePage() {
 
     async function newArt(e: Event) {
         e.preventDefault()
-        const resp = await addArt(title, descr, slug, Number(cat)).catch((err) => {
+        const formdata = new FormData();
+        formdata.append("file", file)
+        formdata.append("title", title)
+        formdata.append("descr", descr)
+        formdata.append("category_id", cat as any)
+        const resp = await addArt(formdata).catch((err) => {
             setError(true)
             setErrorText(err.response.data.message)
         })
@@ -107,6 +113,15 @@ export function AddArticlePage() {
                                 <option value={cat.id}>{cat.title}</option>
                             )}
                         </Form.Select>
+                        <br />
+                        <Form.Label htmlFor="inputImg">Image</Form.Label>
+                        <Form.Control
+                            type="file"
+                            id="inputImg"
+                            value={file.filename}
+                            onChange={(e) => setFile((e.target as HTMLInputElement)?.files[0])}
+                            required
+                        />
 
                         <Button className="setup__btn" type="submit">Отправить!</Button>
                         {isError && <div className="error">{errorText}</div>}
