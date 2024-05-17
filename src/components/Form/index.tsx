@@ -1,7 +1,7 @@
 import './index.sass';
 
 type Props = {
-    onSubmit: any;
+    onSubmit?: any;
     children: any;
     className?: string;
 };

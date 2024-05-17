@@ -1,34 +1,50 @@
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
+import { Editor } from "../../components/Editor"
 import Container from "../../components/Container"
-import { useEffect, useState } from "react";
 import { Form as MyForm } from "../../components/Form"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from "react-router-dom";
-import { getCats, addArt } from "../../http/setupApi"
+import { useEffect, useState, useRef } from "react";
+import { updateArt, getSingleArt, getCats } from "../../http/setupApi"
 import "./articles.sass"
-import { Link } from 'react-router-dom';
-import { Category } from "../../model/Category";
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Article } from "../../model/Articles";
+import HTMLReactParser from "html-react-parser";
+import { Category } from "../../model/Category"
 
-export function AddArticlePage() {
+export function UpdateArticlePage() {
     const [cats, setCats] = useState<Category[]>();
-    const [cat, setCat] = useState();
+    const { articleId } = useParams();
+
+
+    const [art, setArt] = useState<Article>();
     const [isError, setError] = useState(false);
     const [errorText, setErrorText] = useState("");
+
+    const navigate = useNavigate();
+    const editor = useRef(null)
 
     const [title, setTitle] = useState("");
     const [descr, setDescr] = useState("");
     const [slug, setSlug] = useState("");
     const [file, setFile] = useState("");
+    const [cat, setCat] = useState("");
     const [fileName, setFileName] = useState("");
-
-    const navigate = useNavigate();
+    const [content, setContent] = useState("")
 
     useEffect(() => {
+        getArticle(articleId as any);
         getAllCats();
     }, [])
+    useEffect(() => {
 
+        setTitle(art?.title as string)
+        setDescr(art?.descr as string)
+        setCat(art?.Category?.id as any)
+        setSlug(art?.slug as string)
+        setContent(art?.text as string)
+    }, [art])
     const getAllCats = async () => {
         const resp = await getCats().catch((err) => {
             setError(true)
@@ -39,24 +55,44 @@ export function AddArticlePage() {
             setError(false)
         }
     }
+    const getArticle = async (articletId: Number) => {
+        const resp = await getSingleArt(articletId).catch((err) => {
+            console.log(err);
 
-    async function newArt(e: Event) {
-        e.preventDefault()
+        })
+        if (resp && resp.status == 200) {
+
+            setArt(resp.data)
+        }
+    }
+
+    const handleSave = async (e: Event) => {
+        e.preventDefault();
         const formdata = new FormData();
-        formdata.append("file", file)
+        formdata.append("id", articleId as string)
+        if (file) {
+            formdata.append("file", file)
+        }
         formdata.append("title", title)
         formdata.append("descr", descr)
         formdata.append("slug", slug)
+        formdata.append("text", content)
         formdata.append("category_id", cat as any)
-        const resp = await addArt(formdata).catch((err) => {
+        const resp = await updateArt(formdata).catch((err) => {
             setError(true)
             setErrorText(err.response.data.message)
         })
         if (resp && resp.status == 200) {
             setError(false)
-            navigate("/articles")
+            navigate("/articles/" + articleId)
         }
+        // const resp = await updateArt(Number(articleId)).catch((err) => {
+        //     console.log(err);
 
+        // })
+        // if (resp && resp.status == 200) {
+        //     navigate("/articles")
+        // }
     }
 
     return (
@@ -66,17 +102,16 @@ export function AddArticlePage() {
 
                 <div className="articles__top">
                     <div className="articles__main">
-                        <h1>Новая статья</h1>
-                        <p className="setup__descr">Вы движетесь в правильном направлении</p>
+                        <h1>{art?.title}</h1>
                     </div>
                     <div className="articles__btns">
-                        <Link to="/categories">Все категории</Link>
-                        <Link to="/articles">Все статьи</Link>
+
+                        <Link to={"/articles/" + articleId}>Вернуться к статье</Link>
+                        <a href="" onClick={(e) => { handleSave(e as any) }}>Сохранить изменения</a>
                     </div>
                 </div>
-
                 <div className="articles">
-                    <MyForm onSubmit={newArt}>
+                    <MyForm>
                         <Form.Label htmlFor="inputTitle">Название</Form.Label>
                         <Form.Control
                             type="text"
@@ -126,12 +161,19 @@ export function AddArticlePage() {
                             }}
                             required
                         />
+                        <br />
 
-                        <Button className="setup__btn" type="submit">Отправить!</Button>
                         {isError && <div className="error">{errorText}</div>}
                     </MyForm>
 
                 </div>
+                <Form.Label>Текст</Form.Label>
+                <Editor editor={editor} content={content} onChange={(newContent) => {
+                    setContent(newContent)
+                    console.log(content);
+
+                }} />
+
             </Container>
             <Footer />
         </div>

@@ -20,7 +20,7 @@ export function ArticlesPage() {
     const getAllCats = async () => {
         const resp = await getArts().catch((err) => {
             console.log(err);
-            
+
         })
         if (resp && resp.status == 200) {
             console.log(resp.data);
@@ -61,8 +61,8 @@ export function ArticlesPage() {
                                 <div className="articles__name">{art.title}</div>
                                 <div className="articles__category">{art?.Category?.title}</div>
                                 <div className="articles__dates">
-                                    Создано: <br />{art?.createdAt}<br />
-                                    Изменено: <br />{art?.updatedAt}
+                                    Создано: <br />{new Date(art?.createdAt as string).toLocaleString("ru-RU")}<br />
+                                    Изменено: <br />{new Date(art?.updatedAt as string).toLocaleString("ru-RU")}
                                 </div>
                             </Link>
                         )}

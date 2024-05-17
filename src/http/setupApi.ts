@@ -111,3 +111,10 @@ export const deleteArt = async (id: Number) => {
         })
     return response
 }
+
+export const updateArt = async (formdata: FormData) => axios.put("http://localhost:3500/api/articles", formdata, {
+    headers: {
+        "Authorization": `Basic ${localStorage.getItem("token")}`,
+        "Content-Type": "multipart/form-data"
+    }
+})

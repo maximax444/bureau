@@ -10,6 +10,7 @@ import { ArticlesPage } from './pages/main/ArticlesPage'
 import { CategoriesPage } from './pages/main/CategoriesPage'
 import { AddArticlePage } from './pages/main/AddArticlePage'
 import { SingleArticlePage } from './pages/main/SingleArticlePage'
+import { UpdateArticlePage } from './pages/main/UpdateArticlePage'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
       <Route path="/categories" element={<CategoriesPage />} />
       <Route path="/articles/new" element={<AddArticlePage />} />
       <Route path="/articles/:articleId" element={<SingleArticlePage />} />
+      <Route path="/articles/:articleId/edit" element={<UpdateArticlePage />} />
     </Routes>
   )
 }

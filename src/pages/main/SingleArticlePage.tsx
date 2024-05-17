@@ -14,6 +14,8 @@ export function SingleArticlePage() {
 
 
     const [art, setArt] = useState<Article>();
+    const [crAt, setCrAt] = useState<Date>();
+    const [upAt, setUpAt] = useState<Date>();
 
     const navigate = useNavigate();
     // const editor = useRef(null)
@@ -34,17 +36,21 @@ export function SingleArticlePage() {
             setArt(resp.data)
         }
     }
+    useEffect(() => {
+        setCrAt(new Date(art?.createdAt as string))
+        setUpAt(new Date(art?.updatedAt as string))
+    }, [art])
 
     const handleDelete = async (e: Event) => {
         e.preventDefault();
         const resp = await deleteArt(Number(articleId)).catch((err) => {
             console.log(err);
-            
+
         })
         if (resp && resp.status == 200) {
             navigate("/articles")
         }
-    } 
+    }
 
     return (
         <div className="page">
@@ -54,12 +60,16 @@ export function SingleArticlePage() {
                 <div className="articles__top">
                     <div className="articles__main">
                         <h1>{art?.title}</h1>
-                        <p className="setup__descr">{art?.descr} </p>
+                        <p className="setup__descr">{art?.descr} <br />
+                            Категория: {art?.Category?.title} <br />
+                            Создано: {crAt && crAt.toLocaleDateString('ru-RU') + " " + crAt.toLocaleTimeString("ru-RU")}<br />
+                            Изменено: {upAt && upAt.toLocaleDateString('ru-RU') + " " + upAt.toLocaleTimeString("ru-RU")}
+                        </p>
                     </div>
                     <div className="articles__btns">
 
                         <Link to="/articles">Вернуться в статьи</Link>
-                        <a href="" onClick={(e) => {handleDelete(e as any)}}>Удалить статью</a>
+                        <a href="" onClick={(e) => { handleDelete(e as any) }}>Удалить статью</a>
                         <Link to={"/articles/" + articleId + "/edit"}>Редактировать статью</Link>
                     </div>
                 </div>
