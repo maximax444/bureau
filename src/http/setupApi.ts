@@ -1,3 +1,4 @@
+import { numberMap } from "../model/Settings"
 import { $host } from "./index"
 import axios from "axios"
 
@@ -118,3 +119,18 @@ export const updateArt = async (formdata: FormData) => axios.put("http://localho
         "Content-Type": "multipart/form-data"
     }
 })
+export const getSets = async () => {
+    const response = await $host.get('api/settings')
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const updateSets = async (obj: numberMap) => {
+    const response = await $host.put('api/settings', obj)
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
