@@ -239,3 +239,27 @@ export const updateFieldsBlock = async (fields : fvMap) => {
         })
     return response
 }
+
+export const getSinglePage = async (id: Number) => {
+    const response = await $host.get('api/pages/' + id)
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const deletePage = async (id: Number) => {
+    const response = await $host.delete('api/pages/' + id)
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const updatePage = async (id: Number, title: String, slug: String) => {
+    const response = await $host.put('api/pages/', { id, title, slug })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}

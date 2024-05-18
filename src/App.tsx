@@ -6,6 +6,7 @@ import { SetupPage } from './pages/auth/SetupPage'
 import { RegisterPage } from './pages/auth/RegisterPage'
 import { MainPage } from './pages/main/MainPage'
 import { PagesPage } from './pages/main/PagesPage'
+import { SinglePagePage } from './pages/main/SinglePagePage'
 import { ArticlesPage } from './pages/main/ArticlesPage'
 import { CategoriesPage } from './pages/main/CategoriesPage'
 import { AddArticlePage } from './pages/main/AddArticlePage'
@@ -30,6 +31,7 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/" element={<MainPage />} />
       <Route path="/pages" element={<PagesPage />} />
+      <Route path="/pages/:pageId" element={<SinglePagePage />} />
       <Route path="/articles" element={<ArticlesPage />} />
       <Route path="/categories" element={<CategoriesPage />} />
       <Route path="/articles/new" element={<AddArticlePage />} />
