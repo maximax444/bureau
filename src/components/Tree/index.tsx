@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './index.sass';
 import { Page } from '../../model/Page';
+import { Link } from 'react-router-dom';
 
 type Props = {
     items: Page[];
@@ -55,7 +56,7 @@ function Tree(props: Props) {
             {itemsFull.map(item =>
                 <div>
                     <div className="pages__block">
-                        <div className="pages__title">{item.title}</div>
+                        <Link to={"/pages/" + item.id} className="pages__title">{item.title}</Link>
                         <div className="pages__add" onClick={
                             () => props.onClickPlus(item?.id as number)
                         }>
@@ -67,7 +68,7 @@ function Tree(props: Props) {
                     {item?.children?.map(item2 =>
                         <div>
                             <div className="pages__block in">
-                                <div className="pages__title">{item2.title}</div>
+                                <Link to={"/pages/" + item2.id} className="pages__title">{item2.title}</Link>
                                 <div className="pages__add" onClick={
                                     () => props.onClickPlus(item2.id as number)
                                 }>
@@ -77,7 +78,7 @@ function Tree(props: Props) {
                             </div>
                             {item2?.children?.map(item3 =>
                                 <div className="pages__block in2">
-                                    <div className="pages__title">{item3.title}</div>
+                                    <Link to={"/pages/" + item3.id} className="pages__title">{item3.title}</Link>
                                     <div className="pages__add" onClick={
                                         () => props.onClickPlus(item3.id as number)
                                     }>

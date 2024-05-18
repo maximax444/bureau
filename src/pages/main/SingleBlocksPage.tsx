@@ -27,7 +27,6 @@ export function SingleBlocksPage() {
     const navigate = useNavigate();
     const editor = useRef(null)
     const [content, setContent] = useState("")
-    const [frontend, setFrontend] = useState("")
 
     useEffect(() => {
         getBlock();
@@ -39,7 +38,6 @@ export function SingleBlocksPage() {
         setDescr(block?.descr as string);
         setSlug(block?.slug as string);
         setContent(block?.content as string);
-        setFrontend(block?.frontend as string);
     }, [block]);
 
     const getBlock = async () => {
