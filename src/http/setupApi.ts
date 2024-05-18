@@ -190,3 +190,11 @@ export const getBlocks = async () => {
         })
     return response
 }
+
+export const addBlock = async (title: String, descr: String, slug: String) => {
+    const response = await $host.post('api/blocks', { title, descr, slug })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}

@@ -18,6 +18,7 @@ import { FieldsPage } from './pages/main/FieldsPage'
 import { AddFieldsPage } from './pages/main/AddFieldsPage'
 import { SingleFieldsPage } from './pages/main/SingleFieldsPage'
 import { BlocksPage } from './pages/main/BlocksPage'
+import { AddBlocksPage } from './pages/main/AddBlocksPage'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
       <Route path="/fields/new" element={<AddFieldsPage />} />
       <Route path="/fields/:fieldId" element={<SingleFieldsPage />} />
       <Route path="/blocks" element={<BlocksPage />} />
+      <Route path="/blocks/new" element={<AddBlocksPage />} />
     </Routes>
   )
 }
