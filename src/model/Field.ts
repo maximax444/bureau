@@ -6,3 +6,10 @@ export interface Field {
     createdAt?: string
     updatedAt?: string
 }
+
+export interface FieldsValues {
+    readonly id?: number
+    fieldId: number
+    blockId: number
+    value: string
+}

@@ -181,3 +181,12 @@ export const getSingleField = async (id: Number) => {
         })
     return response
 }
+
+
+export const getBlocks = async () => {
+    const response = await $host.get('api/blocks')
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
