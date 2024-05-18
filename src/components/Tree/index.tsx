@@ -62,20 +62,20 @@ function Tree(props: Props) {
                             +
                         </div>
                         {item.slug && <div className="pages__slug">{item.slug}</div>}
-                        
+
                     </div>
                     {item?.children?.map(item2 =>
                         <div>
                             <div className="pages__block in">
-                            <div className="pages__title">{item2.title}</div>
-                            <div className="pages__add" onClick={
-                                () => props.onClickPlus(item2.id as number)
-                            }>
-                                +
+                                <div className="pages__title">{item2.title}</div>
+                                <div className="pages__add" onClick={
+                                    () => props.onClickPlus(item2.id as number)
+                                }>
+                                    +
+                                </div>
+                                <div className="pages__slug">{item2.slug}</div>
                             </div>
-                            <div className="pages__slug">{item2.slug}</div>
-                        </div>
-                        {item2?.children?.map(item3 =>
+                            {item2?.children?.map(item3 =>
                                 <div className="pages__block in2">
                                     <div className="pages__title">{item3.title}</div>
                                     <div className="pages__add" onClick={
@@ -90,7 +90,7 @@ function Tree(props: Props) {
                     )}
                 </div>
             )}
-            <div className="pages__new" onClick={
+            <div className="pages__new categories__add" onClick={
                 () => props.onClickPlus(-1)
             }>
                 + Новая страница в корне

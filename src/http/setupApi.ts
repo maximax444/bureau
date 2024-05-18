@@ -1,3 +1,4 @@
+import { fvMap } from "../model/Field"
 import { numberMap } from "../model/Settings"
 import { $host } from "./index"
 import axios from "axios"
@@ -193,6 +194,46 @@ export const getBlocks = async () => {
 
 export const addBlock = async (title: String, descr: String, slug: String) => {
     const response = await $host.post('api/blocks', { title, descr, slug })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const getSingleBlock = async (id: Number) => {
+    const response = await $host.get('api/blocks/' + id)
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const deleteBlock = async (id: Number) => {
+    const response = await $host.delete('api/blocks/' + id)
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+export const updateBlock = async (id: Number, title: String, descr: String, slug: String, content: String) => {
+    const response = await $host.put('api/blocks/', { id, title, descr, slug, content })
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+
+
+export const getFieldsBlock = async (id: Number) => {
+    const response = await $host.get('api/blocks/' + id + "/fields")
+        .catch((err) => {
+            throw err
+        })
+    return response
+}
+export const updateFieldsBlock = async (fields : fvMap) => {
+    const response = await $host.put('api/blocks/fields', fields)
         .catch((err) => {
             throw err
         })

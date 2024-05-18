@@ -4,6 +4,7 @@ export interface Block {
     descr: string
     slug: string
     content?: string
+    frontend?: string
     fields?: string
     createdAt?: string
     updatedAt?: string
