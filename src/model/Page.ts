@@ -4,7 +4,7 @@ export interface Page {
     slug: string
     parent_id: string
     path?: string
-    text?: Text
+    blocks?: string
     children?: Page[]
     createdAt?: string
     updatedAt?: string

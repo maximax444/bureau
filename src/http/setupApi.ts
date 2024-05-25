@@ -1,3 +1,4 @@
+import { Block } from "../model/Block"
 import { fvMap } from "../model/Field"
 import { numberMap } from "../model/Settings"
 import { $host } from "./index"
@@ -256,8 +257,8 @@ export const deletePage = async (id: Number) => {
     return response
 }
 
-export const updatePage = async (id: Number, title: String, slug: String) => {
-    const response = await $host.put('api/pages/', { id, title, slug })
+export const updatePage = async (id: Number, title: String, slug: String, blocks: Block[]) => {
+    const response = await $host.put('api/pages/', { id, title, slug, blocks })
         .catch((err) => {
             throw err
         })

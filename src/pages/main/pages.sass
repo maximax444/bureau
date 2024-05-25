@@ -13,3 +13,26 @@
     &__new
         padding-top: 15px
         font-size: 20px
+.blocks
+    &__wrap
+        display: flex
+        justify-content: space-between
+    &__all, &__curr
+        width: 45%
+    &__block
+        margin-bottom: 10px
+        border: 1px solid #dedede
+        padding: 20px
+        transition: all 0.3s
+        cursor: pointer
+        &:hover
+            border: 1px solid #000
+    &__checked
+        display: flex
+        align-items: center
+        justify-content: space-between
+        margin-bottom: 10px
+        border: 1px solid #dedede
+        padding: 20px
+    &__remove
+        cursor: pointer
